@@ -3,7 +3,7 @@ import ctkmessagebox3 as messages
 
 import modul.modul
 
-
+'''
 def button_click():
     fullname = entry_fullname.get()
     mail = entry_mail.get()
@@ -81,6 +81,64 @@ entry_password.grid(row=3, column=1, padx=20, pady=20)
 
 butt_submit = CTkButton(main_wind, text="Submit", command=button_click, hover = True)
 butt_submit.pack()
+
+# *************************** задание 2 ****************************************************************
+'''
+
+def button_click():
+    mass1 = entry_mass1.get()
+    mass2 = entry_mass2.get()
+
+
+    mass1 = mass1.split(',')
+    mass2= mass2.split(',')
+
+    res = modul.modul.__check_list(mass1,mass2)
+
+    if res != '':
+        messages.showwarning(master=main_wind, title='Ошибка ввода', message=f'{res}')
+        return ''
+
+    mass1 = list(map(lambda x: int(x), mass1))
+    mass2 = list(map(lambda y: int(y), mass2))
+
+    res_txt.configure(frame, text = str(list(map(lambda x, y: x*y, mass1, mass2))))
+
+    entry_mass1.delete(0, END)
+    entry_mass2.delete(0, END)
+    main_wind.focus()
+
+
+main_wind = CTk()
+main_wind.title('Форма ввода данных')
+main_wind.geometry("650x400")
+main_wind.resizable(True, True)
+main_wind.configure(fg_color=('#2b2f40', 'gray14'))
+
+
+label_mass1 = CTkLabel(main_wind, text="Массив №1", fg_color="transparent", text_color=("#ffff00", "#DCE4EE"))
+label_mass1.grid(row=0, column=0, padx=20, pady=20)
+
+entry_mass1 = CTkEntry(main_wind, width=500, placeholder_text="List 1 [  ]")
+entry_mass1.grid(row=0, column=1, padx=20, pady=20)
+
+label_mass2 = CTkLabel(main_wind, text="Массив №2", fg_color="transparent", text_color=("#ffff00", "#DCE4EE"))
+label_mass2.grid(row=1, column=0, padx=20, pady=20)
+
+entry_mass2 = CTkEntry(main_wind, width=500, placeholder_text="List 2 [  ]")
+entry_mass2.grid(row=1, column=1, padx=20, pady=20)
+
+butt_multi = CTkButton(main_wind, width=50, text="MultiMass", command=button_click, hover = True)
+butt_multi.grid(row=2, column=1, padx=20, pady=20)
+
+label_res2 = CTkLabel(main_wind, text="Результат:", fg_color="transparent", text_color=("#ffff00", "#DCE4EE"))
+label_res2.grid(row=2, column=0, padx=20, pady=20)
+
+frame = CTkFrame(main_wind, width=200, height=200, fg_color=('#2b2f40', 'gray14'))
+frame.grid(row=3, column=0, padx=20, pady=20)
+
+res_txt = CTkLabel(frame, text='', fg_color="transparent", text_color=("#ffff00", "#DCE4EE"))
+res_txt.pack()
 
 
 main_wind.mainloop()
