@@ -3,7 +3,7 @@ import ctkmessagebox3 as messages
 
 import modul.modul
 
-'''
+
 def button_click():
     fullname = entry_fullname.get()
     mail = entry_mail.get()
@@ -83,7 +83,7 @@ butt_submit = CTkButton(main_wind, text="Submit", command=button_click, hover = 
 butt_submit.pack()
 
 # *************************** задание 2 ****************************************************************
-'''
+
 
 def button_click():
     mass1 = entry_mass1.get()
@@ -142,5 +142,3 @@ res_txt.pack()
 
 
 main_wind.mainloop()
-
-# name = entry.get
