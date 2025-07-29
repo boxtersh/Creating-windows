@@ -11,20 +11,8 @@ def button_click():
     login = entry_login.get()
     password = entry_password.get()
 
-    if fullname == '':
-        messages.showwarning(master=main_wind,title = 'Ошибка ввода',message=f'Поле "Полное имя" не может быть пустым')
-        return
-    elif mail == '':
-        messages.showwarning(master=main_wind,title = 'Ошибка ввода',message=f'Поле "mail" не может быть пустым')
-        return
-    elif phone == '':
-        messages.showwarning(master=main_wind,title = 'Ошибка ввода',message=f'Поле "phone" не может быть пустым')
-        return
-    elif login == '':
-        messages.showwarning(master=main_wind,title = 'Ошибка ввода',message=f'Поле "login" не может быть пустым')
-        return
-    elif password == '':
-        messages.showwarning(master=main_wind,title = 'Ошибка ввода',message=f'Поле "password" не может быть пустым')
+    if fullname == '' or mail == '' or phone == '' or login == '' or password == '':
+        messages.showwarning(master=main_wind,title = 'Ошибка ввода',message=f'Поле не может быть пустым')
         return
 
     user_data = modul.modul.FormaSubmit(fullname,mail,phone,login,password)
@@ -36,18 +24,15 @@ def button_click():
     print(user_data)
     messages.showsuccess(master=main_wind, title='Информация', message='Сообщение успешно отправлено')
 
-
-
-
 main_wind = CTk()
 main_wind.title('Форма ввода данных')
 main_wind.geometry("600x400")
 main_wind.resizable(False, False)
 main_wind.configure(fg_color=('#2b2f40', 'gray14'))
 
-
 label_fullname = CTkLabel(main_wind, text="Полное имя", fg_color="transparent", text_color=("#ffff00", "#DCE4EE"))
 label_fullname.pack()
+
 entry_fullname = CTkEntry(main_wind, width=500, placeholder_text="Иванов Иван Иванович")
 entry_fullname.pack()
 
@@ -112,7 +97,7 @@ def button_click():
 main_wind = CTk()
 main_wind.title('Форма ввода данных')
 main_wind.geometry("650x400")
-main_wind.resizable(True, True)
+main_wind.resizable(False, False)
 main_wind.configure(fg_color=('#2b2f40', 'gray14'))
 
 
