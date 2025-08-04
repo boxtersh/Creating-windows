@@ -20,7 +20,6 @@ def __check_list(mass1, mass2):
         return f'Список не должен быть пуст'
 
     elif len(mass1) < 2 or len(mass2) < 2:
-        print(mass1, mass2)
         return f'В списке должно быть не меньше 2 элементов'
 
     elif len(mass1) != len(mass2):

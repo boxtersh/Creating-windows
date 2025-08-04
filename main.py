@@ -1,9 +1,11 @@
 from customtkinter import *
 import ctkmessagebox3 as messages
+from matplotlib.font_manager import weight_dict
+from six import wraps
 
 import modul.modul
 
-
+'''
 def button_click():
     fullname = entry_fullname.get()
     mail = entry_mail.get()
@@ -66,7 +68,7 @@ entry_password.grid(row=3, column=1, padx=20, pady=20)
 
 butt_submit = CTkButton(main_wind, text="Submit", command=button_click, hover = True)
 butt_submit.pack()
-
+'''
 # *************************** задание 2 ****************************************************************
 
 
@@ -87,7 +89,9 @@ def button_click():
     mass1 = list(map(lambda x: int(x), mass1))
     mass2 = list(map(lambda y: int(y), mass2))
 
-    res_txt.configure(frame, text = str(list(map(lambda x, y: x*y, mass1, mass2))))
+    res_txt.delete('0.0','end')
+    text = str(list(map(lambda x, y: x*y, mass1, mass2)))
+    res_txt.insert('0.0', text)
 
     entry_mass1.delete(0, END)
     entry_mass2.delete(0, END)
@@ -104,6 +108,7 @@ main_wind.configure(fg_color=('#2b2f40', 'gray14'))
 label_mass1 = CTkLabel(main_wind, text="Массив №1", fg_color="transparent", text_color=("#ffff00", "#DCE4EE"))
 label_mass1.grid(row=0, column=0, padx=20, pady=20)
 
+
 entry_mass1 = CTkEntry(main_wind, width=500, placeholder_text="List 1 [  ]")
 entry_mass1.grid(row=0, column=1, padx=20, pady=20)
 
@@ -119,11 +124,15 @@ butt_multi.grid(row=2, column=1, padx=20, pady=20)
 label_res2 = CTkLabel(main_wind, text="Результат:", fg_color="transparent", text_color=("#ffff00", "#DCE4EE"))
 label_res2.grid(row=2, column=0, padx=20, pady=20)
 
-frame = CTkFrame(main_wind, width=200, height=200, fg_color=('#2b2f40', 'gray14'))
-frame.grid(row=3, column=0, padx=20, pady=20)
+frame = CTkFrame(main_wind, width=600, height=200, fg_color=('#2b2f40', 'gray14'))
+main_wind.grid_columnconfigure(0, weight=1)
+main_wind.grid_columnconfigure(1, weight=1)
+main_wind.grid_columnconfigure(2, weight=1)
+frame.grid(row=3, column=1, padx=20, pady=20, sticky='ew')
 
-res_txt = CTkLabel(frame, text='', fg_color="transparent", text_color=("#ffff00", "#DCE4EE"))
-res_txt.pack()
+res_txt = CTkTextbox(frame, height=20, width=300, wrap='none', fg_color="transparent", text_color=("#ffff00", "#DCE4EE"))
+res_txt.insert('0.0', 'Ожидание результата')
+res_txt.pack(fill=Y)
 
 
 main_wind.mainloop()
